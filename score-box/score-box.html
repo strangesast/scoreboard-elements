@@ -1,0 +1,44 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="score-box" attributes="score">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+			.box {
+				height: 200px;
+				text-align: center;
+			}
+			.team-name {
+				
+			}
+    </style>
+		<div class="box" horizontal layout>
+			<template repeat="{{i in score}}">
+			  <div flex style="background-color: {{i.color}}">
+			  	<h3 class="team-name">{{i.name}}</h3>
+					<h1>{{i.score}}</h1>
+			  </div>
+			</template>
+		</div>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+			Polymer({
+				'score' : [{'name' : 'team 1', 'color': 'red', 'score': 10}, {'name' : 'team 2', 'color': 'blue', 'score': 12}],
+				'ready' : function() {
+					for(var i in this.score) {
+						console.log(i);
+					}
+				}, 
+				'setScore' : function(_val) {
+					this.score = _val;
+				}
+      });
+
+    })();
+  </script>
+</polymer-element>
