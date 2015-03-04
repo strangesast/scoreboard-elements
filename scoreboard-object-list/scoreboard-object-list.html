@@ -1,0 +1,36 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="scoreboard-object-list" attributes="kind objects live">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+		<core-ajax auto 
+		  url="http://zagrobelny.us:3000/api/{{kind}}"
+		  method="GET"
+			response="{{response}}" 
+			handleAs="json">
+		</core-ajax>
+		<div vertical layout>
+			<template repeat="{{object in response}}">
+			  <scoreboard-object type="{{object.type}}" name="{{object.name}}">
+			</template>
+		</div>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+			Polymer({
+				'ready': function() {
+					console.log(this.objects);
+					console.log(this.live);
+				},
+      });
+
+    })();
+  </script>
+</polymer-element>

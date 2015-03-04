@@ -1,0 +1,26 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<polymer-element name="scoreboard-object" attributes="type name">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+		<div>
+			<p> Type: {{type}}</p>
+			<p> Name: {{name}}</p>
+		</div>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+			Polymer({
+				'ready': function() {
+				}
+      });
+
+    })();
+  </script>
+</polymer-element>
