@@ -1,26 +1,49 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-shadow/paper-shadow.html">
+<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
 
-<polymer-element name="scoreboard-object" attributes="type name">
+<polymer-element name="scoreboard-object" attributes="object selected">
   <template>
     <style>
       :host {
         display: block;
       }
+			.inner {
+				height: 400px;
+			}
+			.small {
+				height: 100px;
+			}
     </style>
-		<div>
-			<p> Type: {{type}}</p>
-			<p> Name: {{name}}</p>
-		</div>
+		<paper-shadow z=1 class="{{selected ? '' : 'small' }}">
+			<div class="inner">
+				<div layout horizontal>
+					<core-icon-button icon="{{selected ? 'expand-more' : 'chevron-right'}}" on-tap="{{toggle-selected}}"></core-icon-button>
+					<h3 self-center>{{object.name}}</h3>
+				</div>
+				<div class="summary">
+					<template if="{{object.type == 'region'}}">
+						<span>Players: (player count), Games: (game count)</span>
+						<span>Id: {{object._id}}</span>
+					</template>
+					<template if="{{object.type == 'player'}}">
+						<span>Parent Team: (player team)</span>
+					</template>
+				</div>
+				<div class="children" hidden?={{!selected}}>
+					<h4>Children</h4>
+					<p>child</p>
+				</div>
+			</div>
+		</paper-shadow>
+		
   </template>
   <script>
-    (function () {
-      'use strict';
-
-			Polymer({
-				'ready': function() {
+		Polymer('scoreboard-object' : {
+				'selected' : false,
+				'toggle-selected' : function() {
+				  this.selected = !this.selected;
 				}
-      });
-
-    })();
+    });
   </script>
 </polymer-element>

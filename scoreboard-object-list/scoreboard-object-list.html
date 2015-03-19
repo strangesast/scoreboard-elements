@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 
-<polymer-element name="scoreboard-object-list" attributes="kind objects live">
+<polymer-element name="scoreboard-object-list" attributes="kind object-url live">
   <template>
     <style>
       :host {
@@ -9,7 +9,7 @@
       }
     </style>
 		<core-ajax auto 
-		  url="http://zagrobelny.us:3000/api/{{kind}}"
+		  url="{{object-url}}"
 		  method="GET"
 			response="{{response}}" 
 			handleAs="json">
